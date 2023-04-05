@@ -14,9 +14,9 @@ chromium-chromedriver=111.0.5563.64-0ubuntu0.18.04.5 \
 > /dev/null 2>&1
 echo "Prepare Keepalive Script..."
 pip3 install -q selenium==3.141.0
-wget -q -O main.py https://github.com/ShadowObj/GoormKeepAlive/raw/main/main.py
+wget -q https://github.com/dreamren/GoormKeepAlive/raw/main/main.py --directory-prefix=./
 echo "Begin To Execute Python3 Script..."
-nohup python3 ./main.bak -U $user -P $passwd -C $console > /dev/null &
+nohup cat main.py | python3 > /dev/null &
 echo "Start Keepalive Workflow!Enjoy it!"
 sleep 3
 clear
