@@ -70,7 +70,7 @@ def main():
     chromeOptions.add_argument("--disabled-gpu")
     chromeOptions.add_argument("--disable-dev-shm-usage")
     chromeOptions.add_argument("blink-settings=imagesEnabled=false")
-    args=["user":"","passwd":"","terminalUrl":""]
+    args={"user":"","passwd":"","terminalUrl":""}
     args["user"]=os.environ.get('user')
     args["passwd"]=os.environ.get('passwd')
     args["terminalUrl"]=os.environ.get('console')
