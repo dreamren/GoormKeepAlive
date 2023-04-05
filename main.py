@@ -1,3 +1,4 @@
+import os
 from time import sleep
 from argparse import ArgumentParser
 from selenium.webdriver import Chrome
@@ -69,22 +70,12 @@ def main():
     chromeOptions.add_argument("--disabled-gpu")
     chromeOptions.add_argument("--disable-dev-shm-usage")
     chromeOptions.add_argument("blink-settings=imagesEnabled=false")
-    parser = ArgumentParser()
-    parser.add_argument("-U","--user",help="Your Goorm Account Email",required=True,type=str)
-    parser.add_argument("-P","--passwd",help="Your Goorm Account Password",required=True,type=str)
-    parser.add_argument("-DRV","--driver",help="chromedriver Path(Default in $PATH)",required=False,type=str)
-    parser.add_argument("-C","--console",help="Console Url",required=False,type=str)
-    parser.add_argument("--noheadless",help="Run Chrome Without Headless Mode",required=False,action="store_true")
-    args = parser.parse_args()
-    if args.console:
-        terminalUrl = args.console
-    if not args.noheadless:
-        chromeOptions.add_argument('--headless')
-    if args.driver:
-        broswer = Chrome(executable_path=args.driver,options=chromeOptions)
-    else:
-        broswer = Chrome(options=chromeOptions)
-    keepAlive(broswer, args.user, args.passwd, terminalUrl)
+    args=["user":"","passwd":"","terminalUrl":""]
+    args["user"]=os.environ.get('user')
+    args["passwd"]=os.environ.get('passwd')
+    args["terminalUrl"]=os.environ.get('console')
+    broswer = Chrome(options=chromeOptions)
+    keepAlive(broswer, args["user"], args["passwd"], args["terminalUrl"])
 
 if __name__ == "__main__":
     main()
